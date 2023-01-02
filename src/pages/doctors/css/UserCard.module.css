@@ -1,0 +1,135 @@
+.top{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+
+.card{
+	margin: 4px;
+	width: 220px;
+	border-radius: 6px;
+	overflow: hidden;
+	/* background:#fff; */
+	box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+	transition: all 100ms ease-in-out;
+}
+.card, .list{
+	transition: all 200ms ease-in-out;
+}
+.card:hover{
+	box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+	transform: translateY(-3%);
+}
+.list{
+	width: 320px;
+	margin: 12px;
+	border-radius: 6px;
+	overflow: hidden;
+	background:rgb(255, 255, 255);
+	box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+    text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.list img{
+	margin: 2px 3px;
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+	border-radius: 50%;
+	border: 1px solid rgba(35, 33, 33, 0.238);
+	box-shadow: 1px 1px 1px 1px   rgba(0, 0, 0, 0.208);
+	
+}
+.list_text {
+	text-align: left;
+	margin: 0px 5px;
+}
+
+
+.list_text h4{
+	margin: 2px 5px 0px 5px;
+}
+.list_text p{
+	font-size: small;
+	margin: 0px 5px;
+}
+.list_text p span{
+	font-size: small;
+}
+
+.information_display{
+	height: min-content;
+	width: 95%;
+}
+
+.information_display h4{
+	font-size: large;
+	margin-top: 3px;
+	font-weight: 700;
+	text-decoration: none;
+	color: #000;
+}
+
+.information_display p{
+	font-weight: 600;
+	margin: -6px 0 0 0;
+	font-size: small;
+}
+.image_container img{
+	margin-top: 5px;
+	width: 210px;
+	height: 210px;
+	object-fit: cover;
+	border-radius: 50%;
+	cursor: pointer;
+	border: 1px solid rgba(35, 33, 33, 0.238);
+	box-shadow: 1px 1px 1px 1px   rgba(0, 0, 0, 0.208);
+}
+
+.admin_area{
+	margin:0px;
+	display: flex;
+	justify-content: space-between;
+	padding: 0px 10% 0 10%;
+}
+
+.btn_section{
+	cursor: pointer;
+	display: flex;
+}
+
+.no_border_button{
+	padding: 0px;
+	border: 0px;
+	background-color: transparent;
+	transform: translateY(-3px);
+}
+.link{
+	text-decoration: none;
+}
+.delete{
+	color: #9c1700;
+}
+.edit{
+	color: #6200ff;
+}
+.inspect{
+	color: #ec4c0d;
+}
+
+
+.dark h4, .dark p{
+	color: rgb(255, 247, 254);
+}
+
+.dark{
+	background-color: rgb(19, 18, 18);
+	box-shadow: 1px 1px 6px rgba(139, 117, 141, 0.178);
+}
+.dark img{
+	border: 1px solid rgba(102, 102, 102, 0.238);
+	box-shadow: 2px 2px 2px rgba(158, 129, 160, 0.2);
+}

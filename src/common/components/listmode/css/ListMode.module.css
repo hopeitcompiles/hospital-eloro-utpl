@@ -1,0 +1,22 @@
+.container_list{
+	width: 90%;
+	margin: 0 auto;
+}
+.option_container{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+.option_list{
+	color: #db2100;
+	margin: 10px 0px 0px;
+	cursor: pointer;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+.dark_theme{
+	color: #fff;
+}
+.touchable{
+	cursor: pointer;
+}

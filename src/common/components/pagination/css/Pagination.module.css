@@ -1,0 +1,83 @@
+.pagination {
+    margin-top: 15px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.pagination button {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 0;
+    background-color: #ddd;
+    cursor: context-menu;
+}
+.pagination button svg{
+    color: #000;
+    margin: auto -6px;
+}
+.dark .pagination button svg:not(.disabled svg){
+    color: rgb(219, 219, 219);
+}
+
+.dark .pagination button{
+    border: solid 0.1px rgba(63, 63, 63, 0.425);
+    background-color: rgb(26, 26, 26);
+    color: #ddd;
+}
+.pagination button.active {
+    background-color: #FF4B2B;
+    color: white;
+    font-weight: bold;
+}
+
+
+.pagination button:hover:not(.disabled) {
+    cursor: pointer;
+    background-color: rgb(139, 139, 139);   
+    color: black;
+}
+
+
+.pagination .disabled{
+    background-color: rgba(180, 180, 180, 0.301);
+}
+
+.dark .pagination .disabled{
+    background-color: rgba(73, 68, 68, 0.699);
+}
+
+.pagination .disabled svg{
+    color: rgba(99, 95, 95, 0.479);
+}
+
+.information{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    color: #FF4B2B;
+}
+.dark .information p{
+    color: #ddd;
+}
+.error{
+    width: 100%;
+    font-size: large;
+    font-weight: 800;
+    border: none;
+    background-color: transparent;
+    color: #000;
+}
+.dark .error{
+    color: rgb(255, 255, 255);
+}
+.back{
+    cursor: pointer;
+    margin: 0 auto 20px;
+    width: 30%;
+    font-size: x-large;
+    color: #FF4B2B;
+    text-shadow: 0 2px 5px rgba(74, 0, 0, 0.193), 
+            0 2px 5px rgba(48, 0, 0, 0.153);
+}
