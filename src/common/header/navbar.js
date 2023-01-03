@@ -75,8 +75,19 @@ export default function Header() {
             <Nav.Link as={Link} to="/doctors" active={location === "/doctors"}>
               {languaje?.NAVBAR?.DOCTORS}
             </Nav.Link>
-            <Nav.Link as={Link} to="/users" active={location === "/users"}>
-              {languaje?.NAVBAR?.USERS}
+            <Nav.Link
+              as={Link}
+              to="/specializations"
+              active={location === "/specializations"}
+            >
+              {languaje?.NAVBAR?.SPECIALIZATION}
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/patients"
+              active={location === "/patients"}
+            >
+              {languaje?.NAVBAR?.PATIENTS}
             </Nav.Link>
           </Nav>
           <Nav>

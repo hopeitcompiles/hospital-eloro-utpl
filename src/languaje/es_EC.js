@@ -21,5 +21,7 @@ export const es_EC = {
     USERS: "Usuarios",
     LOGIN: "Acceder",
     REGISTER: "Registrarse",
+    SPECIALIZATION: "Especializaciones",
+    PATIENTS: "Pacientes",
   },
 };

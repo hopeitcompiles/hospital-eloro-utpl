@@ -1,3 +1,4 @@
+const HOSTX = "http://localhost:8080/";
 const HOST = "http://localhost:8080/";
 const APP = "app";
 const getBaseURL = () => {

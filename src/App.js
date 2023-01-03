@@ -8,6 +8,8 @@ import {
   ThemeProvider,
   Header,
   UserList,
+  SpecializationList,
+  PatientList,
 } from "./imports";
 import DoctorList from "./pages/doctors/list/doctors-list";
 
@@ -25,6 +27,11 @@ function App() {
                 <Route path={"/register"} element={<LogInPage />} />
                 <Route path={"/users"} element={<UserList />} />
                 <Route path={"/doctors"} element={<DoctorList />} />
+                <Route path={"/patients"} element={<PatientList />} />
+                <Route
+                  path={"/specializations"}
+                  element={<SpecializationList />}
+                />
               </Routes>
             </ListProvider>
           </ThemeProvider>

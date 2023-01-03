@@ -7,34 +7,35 @@ import {
   Loading,
   ModalForm,
 } from "../../../imports";
-import { getDoctorList } from "../../../service/DoctorService";
+import { getSpecializationList } from "../../../service/SpecializationService";
 import handleErrorResponse from "../../../utils/ErrorHttpHandler";
-import DoctorCard from "../components/DoctorCard";
-import cardStyle from "../css/UserList.module.css";
-import { AiOutlineUserAdd as AddIcon } from "react-icons/ai";
-import AddDoctorForm from "../components/AddDoctorForm";
-import DeleteDoctor from "../components/DeleteDoctor";
+import SpecializationCard from "../components/SpecializationCard";
+import cardStyle from "../css/List.module.css";
+import { MdPostAdd as AddIcon } from "react-icons/md";
+import AddSpecializationForm from "../components/AddSpecializationForm";
+import { Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
+import DeleteSpecialization from "../components/DeleteSpecialization";
 
-export default function DoctorList() {
+export default function SpecializationList() {
   const { sessionUser } = useContext(SessionContext);
-  const [doctorList, setDoctorList] = useState(null);
+  const [list, setList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [pagination, setPagination] = useState(null);
   const [adding, setAdding] = useState(false);
-  const [editing, setEditing] = useState(null);
-  const [deleting, setDeleting] = useState(null);
   const [error, setError] = useState("");
   const [pagePath, setPagePath] = useSearchParams();
   const page_in_path = pagePath.get("page");
   const search_in_path = pagePath.get("search");
+  const [editing, setEditing] = useState(null);
+  const [deleting, setDeleting] = useState(null);
 
-  const loadDoctors = async () => {
+  const loadSpecializations = async () => {
     setError("");
     setIsLoading(true);
     try {
       const search_param = search_in_path ? search_in_path : "";
       const pagenumber = page_in_path ? page_in_path : 1;
-      const response = await getDoctorList(pagenumber, search_param);
+      const response = await getSpecializationList(pagenumber, search_param);
       console.log(response);
       const page_info = {
         current: response.number + 1,
@@ -45,10 +46,10 @@ export default function DoctorList() {
         first: response.first,
       };
       setPagination(page_info);
-      setDoctorList(response.content);
+      setList(response.content);
     } catch (er) {
       setError(handleErrorResponse(er));
-      setDoctorList(null);
+      setList(null);
       setIsLoading(false);
     }
     setIsLoading(false);
@@ -56,11 +57,11 @@ export default function DoctorList() {
 
   useEffect(() => {
     if (sessionUser) {
-      loadDoctors();
+      loadSpecializations();
       return;
     }
     setError("Not authenticated");
-    setDoctorList([]);
+    setList([]);
     setIsLoading(false);
   }, [page_in_path, search_in_path, sessionUser]);
 
@@ -82,21 +83,21 @@ export default function DoctorList() {
               title={
                 editing !== null
                   ? "Editing: " + editing.name
-                  : "Adding new doctor"
+                  : "Adding new specialization"
               }
               setClose={() => {
                 setEditing(null);
                 setAdding(false);
               }}
             >
-              <AddDoctorForm
+              <AddSpecializationForm
                 editing={editing}
                 onCancel={() => {
                   setEditing(null);
                   setAdding(false);
                 }}
                 onSuccess={() => {
-                  loadDoctors();
+                  loadSpecializations();
                   setAdding(false);
                   setEditing(null);
                 }}
@@ -105,11 +106,11 @@ export default function DoctorList() {
           )}
           {deleting && (
             <ModalForm title={"Delete"} setClose={() => setDeleting(null)}>
-              <DeleteDoctor
+              <DeleteSpecialization
                 deleting={deleting}
                 onDelete={() => {
                   setDeleting(null);
-                  loadDoctors();
+                  loadSpecializations();
                 }}
                 onCancel={() => setDeleting(null)}
               />
@@ -124,10 +125,10 @@ export default function DoctorList() {
                 },
               }}
             />
-            {doctorList?.map((element) => (
+            {list?.map((element) => (
               <div key={element.id}>
-                <DoctorCard
-                  doctor={element}
+                <SpecializationCard
+                  specialization={element}
                   editing={setEditing}
                   deleting={setDeleting}
                 />

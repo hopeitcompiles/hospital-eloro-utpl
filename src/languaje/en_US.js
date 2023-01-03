@@ -21,5 +21,7 @@ export const en_US = {
     USERS: "Users",
     LOGIN: "Login",
     REGISTER: "Sing Up",
+    SPECIALIZATION: "Specializations",
+    PATIENTS: "Patients",
   },
 };

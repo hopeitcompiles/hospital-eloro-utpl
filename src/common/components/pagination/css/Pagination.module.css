@@ -55,6 +55,7 @@
 .information{
     margin-top: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     color: #FF4B2B;
 }
@@ -68,6 +69,7 @@
     border: none;
     background-color: transparent;
     color: #000;
+    text-align: center;
 }
 .dark .error{
     color: rgb(255, 255, 255);
@@ -80,4 +82,7 @@
     color: #FF4B2B;
     text-shadow: 0 2px 5px rgba(74, 0, 0, 0.193), 
             0 2px 5px rgba(48, 0, 0, 0.153);
+}
+.nothing{
+    text-align: center;
 }

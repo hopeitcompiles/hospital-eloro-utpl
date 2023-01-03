@@ -71,11 +71,17 @@ export default function Pagination({ pagination }) {
   const handleClearParams = () => {
     navigate("?page=1");
   };
-
+  if (!pagination || pagination.total_pages === 0) {
+    return (
+      <div className={Style.information}>
+        <p className={Style.error}>&nbsp; Nothing to show</p>
+      </div>
+    );
+  }
   if (pagination?.total_items === 0) {
     return (
       <div className={Style.information}>
-        <div>
+        <div className={Style.nothing}>
           <p>Nothing no show</p>
         </div>
         <button className={Style.error} onClick={handleClearParams}>
@@ -133,7 +139,7 @@ export default function Pagination({ pagination }) {
         </div>
       )}
       <div className={Style.information}>
-        <p>
+        <p className={Style.nothing}>
           Displaying {pagination?.showing} of {pagination?.total_items} elements
         </p>
       </div>

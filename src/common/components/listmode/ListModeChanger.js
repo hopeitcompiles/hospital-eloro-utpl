@@ -16,7 +16,12 @@ const ListModeChanger = ({ left }) => {
             className={`${cardStyle.touchable} ${
               theme === "dark" && cardStyle.dark_theme
             }`}
-            onClick={left?.onClick}
+            onClick={() => {
+              if (left.onClick) {
+                console.log("clicked");
+                left.onClick();
+              }
+            }}
           >
             {left?.icon}
           </div>

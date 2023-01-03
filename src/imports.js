@@ -12,6 +12,8 @@ export { default as HomePage } from "./pages/home/home";
 export { default as LogInPage } from "./pages/sign-in-up/sign-in-up";
 export { default as UserList } from "./pages/users/list/users-list";
 export { default as DoctorList } from "./pages/doctors/list/doctors-list";
+export { default as PatientList } from "./pages/patients/list/patients-list";
+export { default as SpecializationList } from "./pages/specializations/list/specializations-list";
 
 export { default as Header } from "./common/header/navbar";
 export { default as ModalForm } from "./common/components/modal/modalWindow";

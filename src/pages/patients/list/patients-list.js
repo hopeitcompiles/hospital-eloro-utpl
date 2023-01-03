@@ -7,17 +7,17 @@ import {
   Loading,
   ModalForm,
 } from "../../../imports";
-import { getDoctorList } from "../../../service/DoctorService";
+import { getPatientList } from "../../../service/PatientService";
 import handleErrorResponse from "../../../utils/ErrorHttpHandler";
-import DoctorCard from "../components/DoctorCard";
+import PatientCard from "../components/PatientCard";
 import cardStyle from "../css/UserList.module.css";
 import { AiOutlineUserAdd as AddIcon } from "react-icons/ai";
-import AddDoctorForm from "../components/AddDoctorForm";
-import DeleteDoctor from "../components/DeleteDoctor";
+import AddPatientForm from "../components/AddPatientForm";
+import DeletePatient from "../components/DeletePatient";
 
-export default function DoctorList() {
+export default function PatientsList() {
   const { sessionUser } = useContext(SessionContext);
-  const [doctorList, setDoctorList] = useState(null);
+  const [patientList, setPatientList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [pagination, setPagination] = useState(null);
   const [adding, setAdding] = useState(false);
@@ -28,13 +28,13 @@ export default function DoctorList() {
   const page_in_path = pagePath.get("page");
   const search_in_path = pagePath.get("search");
 
-  const loadDoctors = async () => {
+  const loadPatients = async () => {
     setError("");
     setIsLoading(true);
     try {
       const search_param = search_in_path ? search_in_path : "";
       const pagenumber = page_in_path ? page_in_path : 1;
-      const response = await getDoctorList(pagenumber, search_param);
+      const response = await getPatientList(pagenumber, search_param);
       console.log(response);
       const page_info = {
         current: response.number + 1,
@@ -45,10 +45,10 @@ export default function DoctorList() {
         first: response.first,
       };
       setPagination(page_info);
-      setDoctorList(response.content);
+      setPatientList(response.content);
     } catch (er) {
       setError(handleErrorResponse(er));
-      setDoctorList(null);
+      setPatientList(null);
       setIsLoading(false);
     }
     setIsLoading(false);
@@ -56,11 +56,11 @@ export default function DoctorList() {
 
   useEffect(() => {
     if (sessionUser) {
-      loadDoctors();
+      loadPatients();
       return;
     }
     setError("Not authenticated");
-    setDoctorList([]);
+    setPatientList([]);
     setIsLoading(false);
   }, [page_in_path, search_in_path, sessionUser]);
 
@@ -82,21 +82,21 @@ export default function DoctorList() {
               title={
                 editing !== null
                   ? "Editing: " + editing.name
-                  : "Adding new doctor"
+                  : "Adding new patient"
               }
               setClose={() => {
                 setEditing(null);
                 setAdding(false);
               }}
             >
-              <AddDoctorForm
+              <AddPatientForm
                 editing={editing}
                 onCancel={() => {
                   setEditing(null);
                   setAdding(false);
                 }}
                 onSuccess={() => {
-                  loadDoctors();
+                  loadPatients();
                   setAdding(false);
                   setEditing(null);
                 }}
@@ -105,11 +105,11 @@ export default function DoctorList() {
           )}
           {deleting && (
             <ModalForm title={"Delete"} setClose={() => setDeleting(null)}>
-              <DeleteDoctor
+              <DeletePatient
                 deleting={deleting}
                 onDelete={() => {
                   setDeleting(null);
-                  loadDoctors();
+                  loadPatients();
                 }}
                 onCancel={() => setDeleting(null)}
               />
@@ -124,10 +124,10 @@ export default function DoctorList() {
                 },
               }}
             />
-            {doctorList?.map((element) => (
+            {patientList?.map((element) => (
               <div key={element.id}>
-                <DoctorCard
-                  doctor={element}
+                <PatientCard
+                  patient={element}
                   editing={setEditing}
                   deleting={setDeleting}
                 />
