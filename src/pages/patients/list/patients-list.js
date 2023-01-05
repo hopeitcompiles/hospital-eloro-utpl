@@ -117,12 +117,15 @@ export default function PatientsList() {
           )}
           <div className={cardStyle.container}>
             <ListModeChanger
-              left={{
-                icon: <AddIcon size={30} />,
-                onClick: () => {
-                  setAdding(true);
-                },
-              }}
+              left={
+                sessionUser?.role?.claims?.includes("patient:write") && {
+                  title: "Add a new patient",
+                  icon: <AddIcon size={30} />,
+                  onClick: () => {
+                    setAdding(true);
+                  },
+                }
+              }
             />
             {patientList?.map((element) => (
               <div key={element.id}>

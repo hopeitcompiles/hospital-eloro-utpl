@@ -12,11 +12,11 @@ import {
   ThemeContext,
 } from "../../../imports";
 import {
-  DefaultDoctorPicture,
-  DefaultUserPicture,
+  DEFAULT_DOCTOR_PICTURE,
+  DEFAULT_USER_PICTURE,
 } from "../../../utils/GlobalStaticElements";
 import cardStyle from "../css/UserCard.module.css";
-const default_image = DefaultUserPicture;
+const default_image = DEFAULT_USER_PICTURE;
 
 export default function PatientCard({ patient, editing, deleting }) {
   const { theme } = useContext(ThemeContext);
@@ -31,7 +31,7 @@ export default function PatientCard({ patient, editing, deleting }) {
     <div>
       {showModalImage && (
         <ModalForm setClose={() => handleClose()}>
-          <img src={patient?.image ? patient.image : DefaultDoctorPicture} />
+          <img src={patient?.image ? patient.image : DEFAULT_DOCTOR_PICTURE} />
         </ModalForm>
       )}
       <div
@@ -42,7 +42,7 @@ export default function PatientCard({ patient, editing, deleting }) {
         <div className={cardStyle.top}>
           <div className={cardStyle.image_container}>
             <img
-              src={patient?.image ? patient.image : DefaultDoctorPicture}
+              src={patient?.image ? patient.image : DEFAULT_DOCTOR_PICTURE}
               onClick={() => setShowModalImage(true)}
             />
           </div>

@@ -11,12 +11,23 @@ export const postOneObject = async (object, path) => {
     .then((result) => result);
   return data;
 };
-export const deleteOnObject = async (object_id, path) => {
+
+export const deleteOneObject = async (object_id, path) => {
   const data = await axios
     .get(BASE_URL + path + object_id, {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     })
     .then((result) => result);
+  return data;
+};
+
+export const getOneObject = async (object_id, path) => {
+  const data = await axios
+    .get(BASE_URL + path + object_id, {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    })
+    .then((result) => result.data);
   return data;
 };

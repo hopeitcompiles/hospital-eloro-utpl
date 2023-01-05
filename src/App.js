@@ -10,8 +10,11 @@ import {
   UserList,
   SpecializationList,
   PatientList,
+  SpecializationPage,
+  DoctorPage,
 } from "./imports";
 import DoctorList from "./pages/doctors/list/doctors-list";
+import Doctor from "./pages/doctors/main/doctor";
 
 function App() {
   return (
@@ -27,10 +30,15 @@ function App() {
                 <Route path={"/register"} element={<LogInPage />} />
                 <Route path={"/users"} element={<UserList />} />
                 <Route path={"/doctors"} element={<DoctorList />} />
+                <Route path={"/doctors/:id"} element={<DoctorPage />} />
                 <Route path={"/patients"} element={<PatientList />} />
                 <Route
                   path={"/specializations"}
                   element={<SpecializationList />}
+                />
+                <Route
+                  path={"/specializations/:id"}
+                  element={<SpecializationPage />}
                 />
               </Routes>
             </ListProvider>

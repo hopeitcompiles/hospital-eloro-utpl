@@ -55,14 +55,8 @@ export default function DoctorList() {
   };
 
   useEffect(() => {
-    if (sessionUser) {
-      loadDoctors();
-      return;
-    }
-    setError("Not authenticated");
-    setDoctorList([]);
-    setIsLoading(false);
-  }, [page_in_path, search_in_path, sessionUser]);
+    loadDoctors();
+  }, [page_in_path, search_in_path]);
 
   if (isLoading) {
     return <Loading />;
@@ -117,12 +111,15 @@ export default function DoctorList() {
           )}
           <div className={cardStyle.container}>
             <ListModeChanger
-              left={{
-                icon: <AddIcon size={30} />,
-                onClick: () => {
-                  setAdding(true);
-                },
-              }}
+              left={
+                sessionUser?.role?.claims?.includes("doctor:write") && {
+                  title: "Add a new doctor",
+                  icon: <AddIcon size={30} />,
+                  onClick: () => {
+                    setAdding(true);
+                  },
+                }
+              }
             />
             {doctorList?.map((element) => (
               <div key={element.id}>

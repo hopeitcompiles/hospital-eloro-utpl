@@ -5,6 +5,7 @@ import Style from "./css/sign.module.css";
 import { RegisterUser } from "../../service/AuthenticationService";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LanguajeContext } from "../../common/context/LanguajeProvider";
+import { Form } from "react-bootstrap";
 
 export default function Index() {
   const { sessionUser, LogIn } = useContext(SessionContext);
@@ -110,7 +111,7 @@ export default function Index() {
   if (sessionUser) {
     return (
       <h1>
-        Wellcome, {sessionUser?.name} {sessionUser?.lastName}
+        Wellcome, {sessionUser?.person?.name} {sessionUser?.person?.lastName}
       </h1>
     );
   }
@@ -123,13 +124,13 @@ export default function Index() {
         id="container"
       >
         <div className={`${Style.form_container} ${Style.sign_up_container}`}>
-          <form className={Style.form} onSubmit={handleRegister} noValidate>
+          <Form className={Style.form} onSubmit={handleRegister} noValidate>
             <h1 className={Style.title}>{languaje?.LOGIN?.REGISTER_TITLE}</h1>
             <span className={Style.span}>
               {languaje?.LOGIN?.REGISTER_SUBTITLE}
             </span>
-            <input
-              className={Style.input_form}
+            <Form.Label />
+            <Form.Control
               type="text"
               name="name"
               placeholder="Name"
@@ -138,8 +139,8 @@ export default function Index() {
               value={values.name}
               required
             />
-            <input
-              className={Style.input_form}
+            <Form.Label />
+            <Form.Control
               type="text"
               name="lastName"
               placeholder="Last Name"
@@ -147,8 +148,8 @@ export default function Index() {
               value={values.lastName}
               required
             />
-            <input
-              className={Style.input_form}
+            <Form.Label />
+            <Form.Control
               type="email"
               name="email"
               placeholder="Email"
@@ -157,8 +158,8 @@ export default function Index() {
               value={values.email}
               required
             />
-            <input
-              className={Style.input_form}
+            <Form.Label />
+            <Form.Control
               type="password"
               name="password"
               placeholder="Password"
@@ -166,8 +167,8 @@ export default function Index() {
               value={values.password}
               required
             />
-            <input
-              className={Style.input_form}
+            <Form.Label />
+            <Form.Control
               type="text"
               name="ign"
               placeholder="Address"
@@ -175,6 +176,7 @@ export default function Index() {
               value={values.ign}
               required
             />
+            <Form.Label />
             <button
               type="submit"
               className={Style.btn_form}
@@ -184,21 +186,21 @@ export default function Index() {
             </button>
             <a
               className={Style.show_on_small}
-              onClick={() => handleRightPanel(false)}
+              onClick={() => handleRightPanel("/login")}
             >
               {languaje?.LOGIN?.REGISTER_ALTER_TITLE}
             </a>
             <h6 className={Style.error}>{error}</h6>
-          </form>
+          </Form>
         </div>
         <div className={`${Style.form_container} ${Style.sign_in_container}`}>
-          <form className={Style.form} onSubmit={handleLogin} noValidate>
+          <Form className={Style.form} onSubmit={handleLogin} noValidate>
             <h1 className={Style.title}>{languaje?.LOGIN?.LOGIN_TITLE}</h1>
             <span className={Style.span}>
               {languaje?.LOGIN?.LOGIN_SUBTITLE}
             </span>
-            <input
-              className={Style.input_form}
+            <Form.Label />
+            <Form.Control
               type="email"
               name="email"
               placeholder={languaje?.LOGIN?.EMAIL_PLACERHOLDER}
@@ -207,8 +209,8 @@ export default function Index() {
               value={values.email}
               required
             />
-            <input
-              className={Style.input_form}
+            <Form.Label />
+            <Form.Control
               type="password"
               name="password"
               placeholder={languaje?.LOGIN?.PASSWORD_PLACEHOLDER}
@@ -229,13 +231,13 @@ export default function Index() {
             <a onClick={loginWithRedirect}>Login with auth0</a>
             <a
               className={Style.show_on_small}
-              onClick={() => handleRightPanel(true)}
+              onClick={() => handleRightPanel("/register")}
             >
               {languaje?.LOGIN?.LOGIN_ALTER_TITLE}
             </a>
             <div className={Style.m2}></div>
             <h6 className={Style.error}>{error}</h6>
-          </form>
+          </Form>
         </div>
         <div className={Style.overlay_container}>
           <div className={Style.overlay_form}>

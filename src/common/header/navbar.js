@@ -6,17 +6,21 @@ import {
   Container,
   Button,
   Image,
+  Col,
+  Row,
 } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { BsMoonStarsFill as DarkMode } from "react-icons/bs";
 import { MdWbSunny as LightMode } from "react-icons/md";
-import Style from "./css/Header.module.css";
+import { BiExit as Exit } from "react-icons/bi";
+import { FaUser as Profile } from "react-icons/fa";
+
 import { SessionContext } from "../../imports";
 import { ThemeContext } from "../../common/context/ThemeProvider";
 import { LanguajeContext } from "../context/LanguajeProvider";
 import { en_US } from "../../languaje/en_US";
 import { es_EC } from "../../languaje/es_EC";
-import { DefaultUserPicture } from "../../utils/GlobalStaticElements";
+import { DEFAULT_USER_PICTURE } from "../../utils/GlobalStaticElements";
 export default function Header() {
   const { sessionUser, LogOut } = useContext(SessionContext);
   const { theme, setTheme } = useContext(ThemeContext);
@@ -106,32 +110,40 @@ export default function Header() {
               </Nav>
             ) : (
               <Nav>
-                <label htmlFor="basic-nav-dropdown"></label>
                 <NavDropdown
                   title={
-                    <Image
-                      src={
-                        sessionUser?.image
-                          ? sessionUser.image
-                          : DefaultUserPicture
-                      }
-                      className={Style.profile_icon}
-                    />
+                    <label htmlFor="basic-nav-dropdown">
+                      <Image
+                        style={{
+                          height: 40,
+                          width: 40,
+                          marginTop: -5,
+                          marginRight: 3,
+                        }}
+                        src={
+                          sessionUser?.image
+                            ? sessionUser.image
+                            : DEFAULT_USER_PICTURE
+                        }
+                      />
+                      {" " + sessionUser?.person?.name + " "}
+                    </label>
                   }
                   id="basic-nav-dropdown"
                 >
                   <NavDropdown.Item href="#action/3.1">
-                    Profile
+                    <Profile size={20} /> Profile
                   </NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
-                    {sessionUser?.role?.name}
+                    <DarkMode size={20} />
+                    {" " + sessionUser?.role?.name}
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item
                     onClick={() => LogOut()}
-                    className="text-danger"
+                    className="text-danger fw-bold"
                   >
-                    Log out
+                    <Exit size={25} /> Log out
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
@@ -143,11 +155,7 @@ export default function Header() {
                 <LightMode size={20} />
               )}
             </Nav.Link>
-            <NavDropdown
-              drop="down-centered"
-              title={languaje?.NAME}
-              id="basic-nav-dropdown"
-            >
+            <NavDropdown title={languaje?.NAME} id="basic-nav-dropdown">
               <NavDropdown.Item onClick={() => setLanguaje(en_US)}>
                 {en_US.NAME + "  (English)"}
               </NavDropdown.Item>

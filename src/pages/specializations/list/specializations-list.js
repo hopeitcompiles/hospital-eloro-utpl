@@ -56,14 +56,8 @@ export default function SpecializationList() {
   };
 
   useEffect(() => {
-    if (sessionUser) {
-      loadSpecializations();
-      return;
-    }
-    setError("Not authenticated");
-    setList([]);
-    setIsLoading(false);
-  }, [page_in_path, search_in_path, sessionUser]);
+    loadSpecializations();
+  }, [page_in_path, search_in_path]);
 
   if (isLoading) {
     return <Loading />;
@@ -101,6 +95,7 @@ export default function SpecializationList() {
                   setAdding(false);
                   setEditing(null);
                 }}
+                listed={list}
               />
             </ModalForm>
           )}
@@ -118,12 +113,15 @@ export default function SpecializationList() {
           )}
           <div className={cardStyle.container}>
             <ListModeChanger
-              left={{
-                icon: <AddIcon size={30} />,
-                onClick: () => {
-                  setAdding(true);
-                },
-              }}
+              left={
+                sessionUser?.role?.claims?.includes("specialization:write") && {
+                  title: "Add a new specialization",
+                  icon: <AddIcon size={30} />,
+                  onClick: () => {
+                    setAdding(true);
+                  },
+                }
+              }
             />
             {list?.map((element) => (
               <div key={element.id}>
