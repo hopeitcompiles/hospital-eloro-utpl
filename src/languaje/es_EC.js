@@ -23,5 +23,6 @@ export const es_EC = {
     REGISTER: "Registrarse",
     SPECIALIZATION: "Especializaciones",
     PATIENTS: "Pacientes",
+    APPOINTMENTS: "Citas",
   },
 };

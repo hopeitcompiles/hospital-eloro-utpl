@@ -75,6 +75,7 @@ export default function AddDoctorForm({ editing, onSuccess, onCancel }) {
             <ModifingSpecializations
               assigned={editing?.specializations}
               doctor_id={editing.id}
+              close={() => setEditingSpecializations(false)}
             />
           </Modal.Body>
         </Modal>

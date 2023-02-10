@@ -12,6 +12,8 @@ import {
   PatientList,
   SpecializationPage,
   DoctorPage,
+  CreateAppointment,
+  AppointmentPage,
 } from "./imports";
 import DoctorList from "./pages/doctors/list/doctors-list";
 import Doctor from "./pages/doctors/main/doctor";
@@ -39,6 +41,19 @@ function App() {
                 <Route
                   path={"/specializations/:id"}
                   element={<SpecializationPage />}
+                />
+                <Route path={"/appointments"} element={<AppointmentPage />} />
+                <Route
+                  path={"/appointments/create/specialization/:id"}
+                  element={<CreateAppointment />}
+                />
+                <Route
+                  path={"/appointments/:id"}
+                  element={<SpecializationPage />}
+                />
+                <Route
+                  path={"/appointments/create"}
+                  element={<CreateAppointment />}
                 />
               </Routes>
             </ListProvider>

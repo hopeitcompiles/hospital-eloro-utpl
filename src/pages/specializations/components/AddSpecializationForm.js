@@ -36,9 +36,10 @@ export default function AddSpecializationForm({
     let can_continue = true;
     if (listed) {
       listed.forEach((element) => {
-        if (element.id === values.id) {
+        if (element.id === values.id || !element.id) {
           return;
         }
+        console.log("Values", element, values.name);
         const similarity = validateSimilarity(element.name, values.name);
         if (similarity == 1) {
           setError(element.name + " is already registered");

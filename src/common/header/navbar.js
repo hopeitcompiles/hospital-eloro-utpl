@@ -86,12 +86,21 @@ export default function Header() {
             >
               {languaje?.NAVBAR?.SPECIALIZATION}
             </Nav.Link>
+            {sessionUser?.role?.claims?.includes("patient:write") && (
+              <Nav.Link
+                as={Link}
+                to="/patients"
+                active={location === "/patients"}
+              >
+                {languaje?.NAVBAR?.PATIENTS}
+              </Nav.Link>
+            )}
             <Nav.Link
               as={Link}
-              to="/patients"
-              active={location === "/patients"}
+              to="/appointments"
+              active={location === "/appointments"}
             >
-              {languaje?.NAVBAR?.PATIENTS}
+              {languaje?.NAVBAR?.APPOINTMENTS}
             </Nav.Link>
           </Nav>
           <Nav>

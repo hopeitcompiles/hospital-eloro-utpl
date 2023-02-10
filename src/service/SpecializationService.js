@@ -16,6 +16,7 @@ export const getSpecializationList = (page, search) => {
     PAGINATION_SIZE
   );
 };
+
 export const getAllSpecializations = () => {
   return getAllElements("specialization/");
 };

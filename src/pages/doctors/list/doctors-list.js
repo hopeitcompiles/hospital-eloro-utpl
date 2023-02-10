@@ -121,8 +121,8 @@ export default function DoctorList() {
                 }
               }
             />
-            {doctorList?.map((element) => (
-              <div key={element.id}>
+            {doctorList?.map((element,index) => (
+              <div key={element.id?element.id:index}>
                 <DoctorCard
                   doctor={element}
                   editing={setEditing}

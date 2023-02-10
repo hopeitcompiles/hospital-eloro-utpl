@@ -7,7 +7,10 @@ import {
   Loading,
   ModalForm,
 } from "../../../imports";
-import { getSpecializationList } from "../../../service/SpecializationService";
+import {
+  getSpecializationById,
+  getSpecializationList,
+} from "../../../service/SpecializationService";
 import handleErrorResponse from "../../../utils/ErrorHttpHandler";
 import SpecializationCard from "../components/SpecializationCard";
 import cardStyle from "../css/List.module.css";
@@ -29,6 +32,10 @@ export default function SpecializationList() {
   const [editing, setEditing] = useState(null);
   const [deleting, setDeleting] = useState(null);
 
+  const fixOne = async (id) => {
+    const response = await getSpecializationById(id);
+    return response;
+  };
   const loadSpecializations = async () => {
     setError("");
     setIsLoading(true);
@@ -46,6 +53,7 @@ export default function SpecializationList() {
         first: response.first,
       };
       setPagination(page_info);
+
       setList(response.content);
     } catch (er) {
       setError(handleErrorResponse(er));
@@ -123,8 +131,8 @@ export default function SpecializationList() {
                 }
               }
             />
-            {list?.map((element) => (
-              <div key={element.id}>
+            {list?.map((element, index) => (
+              <div key={element.id ? element.id : -index}>
                 <SpecializationCard
                   specialization={element}
                   editing={setEditing}

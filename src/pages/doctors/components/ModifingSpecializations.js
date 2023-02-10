@@ -7,13 +7,19 @@ import {
   Col,
   Container,
   Form,
+  InputGroup,
   Row,
 } from "react-bootstrap";
 import { getAllSpecializations } from "../../../service/SpecializationService";
 import { MdOutlineAddCircle as Add } from "react-icons/md";
+import { BsSearch as Search } from "react-icons/bs";
 import { saveSpecializationsToDoctorById } from "../../../service/DoctorService";
 
-export default function ModifingSpecializations({ assigned, doctor_id }) {
+export default function ModifingSpecializations({
+  assigned,
+  doctor_id,
+  close,
+}) {
   const [specializations, setSpecializations] = useState([]);
   const [assignedList, setAssignedList] = useState(assigned);
   const list = useRef([]);
@@ -62,6 +68,7 @@ export default function ModifingSpecializations({ assigned, doctor_id }) {
       assignedList,
       doctor_id
     );
+    close();
   };
   return (
     <Container>
@@ -77,11 +84,13 @@ export default function ModifingSpecializations({ assigned, doctor_id }) {
       })}
       <br />
       <Form.Label />
-      <Form.Control
-        style={{ marginBottom: 8 }}
-        type="text"
-        placeholder="Search"
-      />
+      <Row>
+        <Form.Control
+          style={{ marginBottom: 8 }}
+          type="search"
+          placeholder="Search"
+        />
+      </Row>
       <Form.Label className="fw-bold">Available</Form.Label>
       <br></br>
       {specializations?.map((element, index) => {
@@ -99,7 +108,7 @@ export default function ModifingSpecializations({ assigned, doctor_id }) {
       <Row>
         <Form.Label />
         <ButtonGroup>
-          <Button variant="danger" style={{ marginRight: 1 }}>
+          <Button variant="danger" style={{ marginRight: 1 }} onClick={close}>
             Cancel
           </Button>
           <Button

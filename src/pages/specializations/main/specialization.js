@@ -1,6 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Accordion, Card, Col, Container, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import {
+  Accordion,
+  Button,
+  ButtonToolbar,
+  Card,
+  Col,
+  Container,
+  Row,
+} from "react-bootstrap";
+import { Link, useParams } from "react-router-dom";
 import { Loading, SessionContext } from "../../../imports";
 import { getSpecializationById } from "../../../service/SpecializationService";
 import { DEFAULT_SPECIALIZATION_PICTURE } from "../../../utils/GlobalStaticElements";
@@ -77,6 +85,19 @@ export default function Specialization() {
                   : "This specialization hasn't been assigned to a doctor"}
               </Accordion.Body>
             </Accordion.Item>
+            <Container fluid style={{ marginTop: 20 }}>
+              <Col xs={12}>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={"/appointments/create/specialization/" + id}
+                >
+                  <Row />
+                  <Row>
+                    <Button variant="success">Registrar Cita</Button>
+                  </Row>
+                </Link>
+              </Col>
+            </Container>
           </Accordion>
         </Col>
       </Row>

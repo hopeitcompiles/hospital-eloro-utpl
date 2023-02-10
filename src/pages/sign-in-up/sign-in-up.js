@@ -6,6 +6,7 @@ import { RegisterUser } from "../../service/AuthenticationService";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LanguajeContext } from "../../common/context/LanguajeProvider";
 import { Form } from "react-bootstrap";
+import { registerNewPatientFromAuthForm } from "../../service/PatientService";
 
 export default function Index() {
   const { sessionUser, LogIn } = useContext(SessionContext);
@@ -18,7 +19,7 @@ export default function Index() {
 
   const [values, setValues] = useState({
     name: "",
-    ign: "",
+    phone: "",
     lastName: "",
     email: "",
     password: "",
@@ -58,11 +59,16 @@ export default function Index() {
     e.preventDefault();
     setIsSigning(true);
     try {
-      const response = await RegisterUser(values);
+      const response = await registerNewPatientFromAuthForm({
+        name: values.name,
+        lastName: values.lastName,
+        phone: values.phone,
+        user: { email: values.email, password: values.password },
+      });
       if (response?.status === 200) {
         handleLogin();
       }
-      setError(response.data);
+      setError("Registered");
     } catch (er) {
       setError("Something went wrong");
     }
@@ -170,10 +176,12 @@ export default function Index() {
             <Form.Label />
             <Form.Control
               type="text"
-              name="ign"
-              placeholder="Address"
+              name="phone"
+              placeholder="Phone"
               onChange={handleInputChange}
-              value={values.ign}
+              value={values.phone}
+              maxLength={10}
+              minLength={10}
               required
             />
             <Form.Label />

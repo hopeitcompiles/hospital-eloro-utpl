@@ -23,5 +23,6 @@ export const en_US = {
     REGISTER: "Sing Up",
     SPECIALIZATION: "Specializations",
     PATIENTS: "Patients",
+    APPOINTMENTS: "Appointments",
   },
 };

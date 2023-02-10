@@ -8,8 +8,17 @@ import {
   DEFAULT_SPECIALIZATION_PICTURE,
 } from "../../../utils/GlobalStaticElements";
 import { BsCheckCircleFill as Checkbox } from "react-icons/bs";
-import { Col, Form, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  OverlayTrigger,
+  Row,
+  Tooltip,
+} from "react-bootstrap";
 import { SessionContext } from "../../../imports";
+import { getSpecializationById } from "../../../service/SpecializationService";
 
 export default function SpecializationCard({
   specialization,
@@ -18,13 +27,24 @@ export default function SpecializationCard({
 }) {
   const { sessionUser } = useContext(SessionContext);
   const [image, setImage] = useState(DEFAULT_SPECIALIZATION_PICTURE);
+  const [current, setCurrent] = useState(
+    specialization.id != null ? specialization : null
+  );
+  const getSpecialization = async () => {
+    const response = await getSpecializationById(specialization);
+    setCurrent(response);
+  };
+  useEffect(() => {
+    if (current?.image) {
+      setImage(current.image);
+    }
+  }, [current]);
 
   useEffect(() => {
-    if (specialization?.image) {
-      setImage(specialization.image);
+    if (current === null) {
+      getSpecialization();
     }
   }, []);
-
   return (
     <section>
       <div className={cardStyle.cards}>
@@ -41,93 +61,103 @@ export default function SpecializationCard({
               <img
                 className={cardStyle.card__thumb}
                 src={DEFAULT_DOCTOR_PICTURE}
-                alt={specialization?.name}
+                alt={current?.name}
               />
 
               <div className={cardStyle.card__header_text}>
                 <Link
-                  to={`/specializations/${specialization.id}`}
+                  to={`/specializations/${current?.id}`}
                   className={cardStyle.link}
                 >
-                  <h3 className={cardStyle.card__title}>
-                    {specialization?.name}
-                  </h3>
+                  <h3 className={cardStyle.card__title}>{current?.name}</h3>
                 </Link>
                 <Link
-                  to={`/specializations/${specialization.id}`}
+                  to={`/specializations/${current?.id}`}
                   className={cardStyle.link}
                 >
                   <span className={cardStyle.card__status}>
-                    {specialization?.doctors
-                      ? specialization.doctors.length + " "
-                      : "0 "}
+                    {current?.doctors ? current?.doctors.length + " " : "0 "}
                     doctors
                   </span>
                 </Link>
               </div>
             </div>
             <p className={cardStyle.card__description}>
-              {specialization?.description}
+              {current?.description}
             </p>
 
             <div className={cardStyle.card__buttons}>
               <Form>
-                <Row className="mx-3">
-                  <Col>
-                    <OverlayTrigger
-                      placement="top"
-                      overlay={
-                        <Tooltip id="button-tooltip-2">
-                          This specialization is{" "}
-                          {specialization.enabled ? " enabled" : "disabled"}
-                        </Tooltip>
-                      }
-                    >
+                {sessionUser?.role?.claims?.includes("specialization:write") ? (
+                  <Row className="mx-3">
+                    <Col>
+                      <OverlayTrigger
+                        placement="top"
+                        overlay={
+                          <Tooltip id="button-tooltip-2">
+                            This current is{" "}
+                            {current?.enabled ? " enabled" : "disabled"}
+                          </Tooltip>
+                        }
+                      >
+                        <Form.Floating>
+                          <Checkbox
+                            size={25}
+                            color={current?.enabled ? "green" : "silver"}
+                          />
+                        </Form.Floating>
+                      </OverlayTrigger>
+
+                      <Form.Label>
+                        {current?.enabled ? "Enable" : "Disable"}
+                      </Form.Label>
+                    </Col>
+
+                    <Col>
                       <Form.Floating>
-                        <Checkbox
-                          size={25}
-                          color={specialization.enabled ? "green" : "silver"}
+                        <Delete
+                          onClick={() => {
+                            if (deleting) {
+                              deleting(current);
+                            }
+                          }}
+                          className={cardStyle.button}
+                          size={30}
+                          color="#FF4B2f"
                         />
                       </Form.Floating>
-                    </OverlayTrigger>
+                      <Form.Label>Delete</Form.Label>
+                    </Col>
 
-                    <Form.Label>
-                      {specialization.enabled ? "Enable" : "Disable"}
-                    </Form.Label>
+                    <Col>
+                      <Form.Floating>
+                        <Edit
+                          onClick={() => {
+                            if (editing) {
+                              editing(current);
+                            }
+                          }}
+                          className={cardStyle.button}
+                          size={30}
+                          color="orange"
+                        />
+                      </Form.Floating>
+                      <Form.Label>Edit</Form.Label>
+                    </Col>
+                  </Row>
+                ) : (
+                  <Col style={{ marginBottom: 30, marginInline: 30 }}>
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to={"/appointments/create/specialization/" + current?.id}
+                    >
+                      <Row />
+                      <Row>
+                        <Button variant="success">Registrar Cita</Button>
+                      </Row>
+                    </Link>
                   </Col>
-
-                  <Col>
-                    <Form.Floating>
-                      <Delete
-                        onClick={() => {
-                          if (deleting) {
-                            deleting(specialization);
-                          }
-                        }}
-                        className={cardStyle.button}
-                        size={30}
-                        color="#FF4B2f"
-                      />
-                    </Form.Floating>
-                    <Form.Label>Delete</Form.Label>
-                  </Col>
-
-                  <Col>
-                    <Form.Floating>
-                      <Edit
-                        onClick={() => {
-                          if (editing) {
-                            editing(specialization);
-                          }
-                        }}
-                        className={cardStyle.button}
-                        size={30}
-                        color="orange"
-                      />
-                    </Form.Floating>
-                    <Form.Label>Edit</Form.Label>
-                  </Col>
-                </Row>
+                )}
               </Form>
             </div>
           </div>
