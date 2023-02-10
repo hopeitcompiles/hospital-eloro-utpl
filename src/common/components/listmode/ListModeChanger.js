@@ -17,7 +17,7 @@ const ListModeChanger = ({ left }) => {
             placement="bottom"
             overlay={
               <Tooltip id="button-tooltip-2">
-                {left.title && left.title}
+                {left.title ? left.title : ""}
               </Tooltip>
             }
           >

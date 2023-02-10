@@ -27,7 +27,7 @@ export default function ModifingSpecializations({
     const response = await getAllSpecializations();
     if (response != null) {
       list.current = response;
-      setUpAvailableFiltered(response);
+      setUpAvailableFiltered();
     }
   };
 
