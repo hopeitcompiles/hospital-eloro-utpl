@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import {
   RiDeleteBinFill as DeleteBtn,
   RiEdit2Fill as EditBtn,
-  RiSearchEyeLine as InspectBtn,
 } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import {
@@ -11,12 +10,8 @@ import {
   RoleColor,
   ThemeContext,
 } from "../../../imports";
-import {
-  DEFAULT_DOCTOR_PICTURE,
-  DEFAULT_USER_PICTURE,
-} from "../../../utils/GlobalStaticElements";
+import { DEFAULT_DOCTOR_PICTURE } from "../../../utils/GlobalStaticElements";
 import cardStyle from "../css/UserCard.module.css";
-const default_image = DEFAULT_USER_PICTURE;
 
 export default function PatientCard({ patient, editing, deleting }) {
   const { theme } = useContext(ThemeContext);

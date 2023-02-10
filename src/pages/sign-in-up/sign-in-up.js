@@ -2,7 +2,6 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { SessionContext, ThemeContext } from "../../imports";
 import Style from "./css/sign.module.css";
-import { RegisterUser } from "../../service/AuthenticationService";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LanguajeContext } from "../../common/context/LanguajeProvider";
 import { Form } from "react-bootstrap";
@@ -87,7 +86,6 @@ export default function Index() {
   const handleRightPanel = (url) => {
     if (location === "/register" || location === "/login") {
       navigate(url);
-      return;
     }
   };
 
@@ -105,7 +103,6 @@ export default function Index() {
     if (location === "/login") {
       emailRef.current.focus();
       setRegisterPanelActive(false);
-      return;
     }
   }, [location]);
 

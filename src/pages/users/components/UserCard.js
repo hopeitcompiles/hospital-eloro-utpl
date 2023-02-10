@@ -11,7 +11,7 @@ import cardStyle from "../css/UserCard.module.css";
 const default_image = DEFAULT_USER_PICTURE;
 
 export default function UserCard({ current_user }) {
-  const [cardUser, setCardUser] = useState(current_user);
+  const cardUser = current_user;
   const { theme } = useContext(ThemeContext);
   const [showModalImage, setShowModalImage] = useState(false);
 

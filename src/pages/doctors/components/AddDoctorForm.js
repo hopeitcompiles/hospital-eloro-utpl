@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  ButtonGroup,
-  Col,
-  Form,
-  FormGroup,
-  InputGroup,
-  Modal,
-  Row,
-} from "react-bootstrap";
+import { Button, ButtonGroup, Col, Form, Modal, Row } from "react-bootstrap";
 import { registerNewDoctor } from "../../../service/DoctorService";
 
 import Style from "../css/AddForm.module.css";

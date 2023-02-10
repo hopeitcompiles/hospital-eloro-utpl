@@ -16,7 +16,6 @@ import {
   AppointmentPage,
 } from "./imports";
 import DoctorList from "./pages/doctors/list/doctors-list";
-import Doctor from "./pages/doctors/main/doctor";
 
 function App() {
   return (

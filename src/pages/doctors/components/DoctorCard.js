@@ -14,7 +14,6 @@ import {
   DEFAULT_DOCTOR_PICTURE,
   DEFAULT_USER_PICTURE,
   randomBootstrapColorNormal,
-  RANDOM_BOOTSTRAP_COLOR,
 } from "../../../utils/GlobalStaticElements";
 import cardStyle from "../css/UserCard.module.css";
 import {

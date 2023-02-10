@@ -8,15 +8,16 @@ const LANGUAJE_STORAGE_NAME = "languaje_hospital";
 const initial_languaje = window.localStorage.getItem(LANGUAJE_STORAGE_NAME);
 
 function LanguajeProvider({ children }) {
+  const _languaje = initial_languaje ? initial_languaje : es_EC;
   const [languaje, setLanguaje] = useState(
-    initial_languaje ? (initial_languaje === es_EC.NAME ? es_EC : en_US) : es_EC
+    _languaje === es_EC.NAME ? es_EC : en_US
   );
 
   useEffect(() => {
     window.localStorage.setItem(LANGUAJE_STORAGE_NAME, languaje.NAME);
   }, [languaje]);
 
-  const toExport = { languaje, setLanguaje };
+  const toExport = useMemo(() => ({ languaje, setLanguaje }), []);
 
   return (
     <LanguajeContext.Provider value={toExport}>

@@ -20,7 +20,7 @@ export const randomBootstrapColorNormal = () => {
 
 function getRandomInt(max) {
   const crypto = window.crypto || window.Crypto;
-  var array = new Uint32Array(1);
+  const array = new Uint32Array(1);
   const value = String(crypto.getRandomValues(array)[0])[0];
   return parseInt(value);
 }

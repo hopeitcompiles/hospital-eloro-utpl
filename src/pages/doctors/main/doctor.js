@@ -3,10 +3,7 @@ import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import { Loading } from "../../../imports";
 import { getDoctorById } from "../../../service/DoctorService";
-import {
-  DEFAULT_DOCTOR_PICTURE,
-  DEFAULT_SPECIALIZATION_PICTURE,
-} from "../../../utils/GlobalStaticElements";
+import { DEFAULT_SPECIALIZATION_PICTURE } from "../../../utils/GlobalStaticElements";
 
 export default function Doctor() {
   const { id } = useParams();

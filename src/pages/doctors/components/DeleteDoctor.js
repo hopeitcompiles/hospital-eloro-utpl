@@ -23,6 +23,7 @@ export default function DeleteDoctor({ deleting, onCancel, onDelete }) {
       <h5>
         {deleting?.name} {deleting?.lastName}
       </h5>
+      {error}
       <ButtonGroup className={Style.buttongroup}>
         <Button
           className={Style.button}

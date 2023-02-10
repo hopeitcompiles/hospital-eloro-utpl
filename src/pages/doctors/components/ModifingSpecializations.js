@@ -4,15 +4,12 @@ import {
   Button,
   ButtonGroup,
   CloseButton,
-  Col,
   Container,
   Form,
-  InputGroup,
   Row,
 } from "react-bootstrap";
 import { getAllSpecializations } from "../../../service/SpecializationService";
 import { MdOutlineAddCircle as Add } from "react-icons/md";
-import { BsSearch as Search } from "react-icons/bs";
 import { saveSpecializationsToDoctorById } from "../../../service/DoctorService";
 
 export default function ModifingSpecializations({
@@ -37,7 +34,6 @@ export default function ModifingSpecializations({
       assignedList.map((element) => {
         if (element.id === s.id) {
           add = false;
-          return;
         }
       });
       return add;
@@ -64,10 +60,7 @@ export default function ModifingSpecializations({
   };
 
   const handleSave = async () => {
-    const response = await saveSpecializationsToDoctorById(
-      assignedList,
-      doctor_id
-    );
+    await saveSpecializationsToDoctorById(assignedList, doctor_id);
     close();
   };
   return (
@@ -76,7 +69,7 @@ export default function ModifingSpecializations({
       <br />
       {assignedList?.map((element, index) => {
         return (
-          <Badge key={index} style={styles.badge}>
+          <Badge key={element.id} style={styles.badge}>
             {element.name}&nbsp;&nbsp;
             <CloseButton variant="white" onClick={() => handleRemove(index)} />
           </Badge>
@@ -95,7 +88,7 @@ export default function ModifingSpecializations({
       <br></br>
       {specializations?.map((element, index) => {
         return (
-          <Badge key={index} style={styles.badge}>
+          <Badge key={element.id} style={styles.badge}>
             {element.name}&nbsp;&nbsp;
             <Add
               style={{ cursor: "pointer" }}

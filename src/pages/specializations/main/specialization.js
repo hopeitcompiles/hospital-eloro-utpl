@@ -1,18 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
-import {
-  Accordion,
-  Button,
-  ButtonToolbar,
-  Card,
-  Col,
-  Container,
-  Row,
-} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Accordion, Button, Card, Col, Container, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
-import { Loading, SessionContext } from "../../../imports";
+import { Loading } from "../../../imports";
 import { getSpecializationById } from "../../../service/SpecializationService";
 import { DEFAULT_SPECIALIZATION_PICTURE } from "../../../utils/GlobalStaticElements";
-import DoctorCard from "../../doctors/components/DoctorCard";
 import DoctorSmallCard from "../components/DoctorSmallCard";
 
 export default function Specialization() {

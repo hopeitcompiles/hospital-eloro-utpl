@@ -1,14 +1,5 @@
-import { useContext, useState } from "react";
-import {
-  Nav,
-  Navbar,
-  NavDropdown,
-  Container,
-  Button,
-  Image,
-  Col,
-  Row,
-} from "react-bootstrap";
+import { useContext } from "react";
+import { Nav, Navbar, NavDropdown, Container, Image } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { BsMoonStarsFill as DarkMode } from "react-icons/bs";
 import { MdWbSunny as LightMode } from "react-icons/md";
@@ -34,13 +25,6 @@ export default function Header() {
       return;
     }
     setTheme("dark");
-  };
-  const handleLanguaje = () => {
-    if (languaje.NAME === en_US.NAME) {
-      setLanguaje(es_EC);
-    } else {
-      setLanguaje(en_US);
-    }
   };
 
   return (

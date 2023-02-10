@@ -1,20 +1,7 @@
-import { useEffect } from "react";
 import style from "./css/Modal.module.css";
 import { MdCancel as Close } from "react-icons/md";
 
 export default function ModalWindow({ children, setClose, title }) {
-  // useEffect(() => {
-  //   function handle(event) {
-  //     console.log(event);
-  //   }
-  //   document.addEventListener("keypress", handle, false);
-  //   document.body.style.overflow = "hidden";
-  //   return () => {
-  //     document.body.style.overflowY = "inherit";
-  //     document.removeEventListener("keypress", handle, false);
-  //   };
-  // });
-
   return (
     <div onClick={setClose} className={style.overlay}>
       <div

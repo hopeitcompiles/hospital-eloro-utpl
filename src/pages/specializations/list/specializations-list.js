@@ -16,7 +16,6 @@ import SpecializationCard from "../components/SpecializationCard";
 import cardStyle from "../css/List.module.css";
 import { MdPostAdd as AddIcon } from "react-icons/md";
 import AddSpecializationForm from "../components/AddSpecializationForm";
-import { Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
 import DeleteSpecialization from "../components/DeleteSpecialization";
 
 export default function SpecializationList() {
@@ -32,10 +31,6 @@ export default function SpecializationList() {
   const [editing, setEditing] = useState(null);
   const [deleting, setDeleting] = useState(null);
 
-  const fixOne = async (id) => {
-    const response = await getSpecializationById(id);
-    return response;
-  };
   const loadSpecializations = async () => {
     setError("");
     setIsLoading(true);
