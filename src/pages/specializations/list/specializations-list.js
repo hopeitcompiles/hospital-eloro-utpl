@@ -7,10 +7,7 @@ import {
   Loading,
   ModalForm,
 } from "../../../imports";
-import {
-  getSpecializationById,
-  getSpecializationList,
-} from "../../../service/SpecializationService";
+import { getSpecializationList } from "../../../service/SpecializationService";
 import handleErrorResponse from "../../../utils/ErrorHttpHandler";
 import SpecializationCard from "../components/SpecializationCard";
 import cardStyle from "../css/List.module.css";

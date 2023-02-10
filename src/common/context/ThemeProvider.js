@@ -14,7 +14,7 @@ function ThemeProvider({ children }) {
     window.localStorage.setItem(THEME_STORAGE_NAME, mode);
   }, [mode]);
 
-  const toExport = useMemo(() => ({ theme: mode, setTheme: setMode }, []));
+  const toExport = useMemo(() => ({ theme: mode, setTheme: setMode }), []);
   return (
     <ThemeContext.Provider value={toExport}>{children}</ThemeContext.Provider>
   );

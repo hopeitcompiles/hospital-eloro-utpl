@@ -55,7 +55,8 @@ function SessionProvider({ children }) {
   };
 
   const toExport = useMemo(
-    () => ({ sessionUser: session, LogIn: login, LogOut: logout }, [])
+    () => ({ sessionUser: session, LogIn: login, LogOut: logout }),
+    []
   );
   return (
     <SessionContext.Provider value={toExport}>
