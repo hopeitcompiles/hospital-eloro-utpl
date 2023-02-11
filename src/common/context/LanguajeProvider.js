@@ -17,8 +17,10 @@ function LanguajeProvider({ children }) {
     window.localStorage.setItem(LANGUAJE_STORAGE_NAME, languaje.NAME);
   }, [languaje]);
 
+  const toExport = { languaje, setLanguaje };
+
   return (
-    <LanguajeContext.Provider value={{ languaje, setLanguaje }}>
+    <LanguajeContext.Provider value={toExport}>
       {children}
     </LanguajeContext.Provider>
   );

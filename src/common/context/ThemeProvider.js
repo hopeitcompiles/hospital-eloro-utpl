@@ -14,10 +14,9 @@ function ThemeProvider({ children }) {
     window.localStorage.setItem(THEME_STORAGE_NAME, mode);
   }, [mode]);
 
+  const toExport = { theme: mode, setTheme: setMode };
   return (
-    <ThemeContext.Provider value={{ theme: mode, setTheme: setMode }}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={toExport}>{children}</ThemeContext.Provider>
   );
 }
 
