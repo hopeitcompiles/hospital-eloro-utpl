@@ -4,8 +4,10 @@ const ListContext = createContext();
 const ListProvider = ({ children }) => {
   const [list, setList] = useState(false);
 
-  const data = useMemo(() => ({ list, setList }), []);
-
-  return <ListContext.Provider value={data}>{children}</ListContext.Provider>;
+  return (
+    <ListContext.Provider value={{ list, setList }}>
+      {children}
+    </ListContext.Provider>
+  );
 };
 export { ListProvider, ListContext };

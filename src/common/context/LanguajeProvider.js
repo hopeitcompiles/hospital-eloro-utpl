@@ -17,10 +17,8 @@ function LanguajeProvider({ children }) {
     window.localStorage.setItem(LANGUAJE_STORAGE_NAME, languaje.NAME);
   }, [languaje]);
 
-  const toExport = useMemo(() => ({ languaje, setLanguaje }), []);
-
   return (
-    <LanguajeContext.Provider value={toExport}>
+    <LanguajeContext.Provider value={{ languaje, setLanguaje }}>
       {children}
     </LanguajeContext.Provider>
   );

@@ -54,12 +54,10 @@ function SessionProvider({ children }) {
     window.localStorage.removeItem(TOKEN_STORAGE_NAME);
   };
 
-  const toExport = useMemo(
-    () => ({ sessionUser: session, LogIn: login, LogOut: logout }),
-    []
-  );
   return (
-    <SessionContext.Provider value={toExport}>
+    <SessionContext.Provider
+      value={{ sessionUser: session, LogIn: login, LogOut: logout }}
+    >
       {children}
     </SessionContext.Provider>
   );
