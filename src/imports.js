@@ -19,6 +19,7 @@ export { default as SpecializationList } from "./pages/specializations/list/spec
 export { default as SpecializationPage } from "./pages/specializations/main/specialization";
 export { default as CreateAppointment } from "./pages/appointments/create/create-appointment";
 export { default as AppointmentPage } from "./pages/appointments/main/appointment-main";
+export { default as DiseasesPage } from "./pages/patients/diseases/diseases";
 
 export { default as Header } from "./common/header/navbar";
 export { default as ModalForm } from "./common/components/modal/modalWindow";

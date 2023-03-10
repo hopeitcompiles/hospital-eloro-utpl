@@ -18,10 +18,11 @@ export default function Index() {
 
   const [values, setValues] = useState({
     name: "",
-    phone: "",
+    dni: "",
     lastName: "",
     email: "",
     password: "",
+    birthdate: "",
   });
 
   const [error, setError] = useState("");
@@ -61,8 +62,9 @@ export default function Index() {
       const response = await registerNewPatientFromAuthForm({
         name: values.name,
         lastName: values.lastName,
-        phone: values.phone,
+        dni: values.dni,
         user: { email: values.email, password: values.password },
+        birthdate: values.birthdate,
       });
       if (response?.status === 200) {
         handleLogin();
@@ -173,10 +175,21 @@ export default function Index() {
             <Form.Label />
             <Form.Control
               type="text"
-              name="phone"
-              placeholder="Phone"
+              name="dni"
+              placeholder="CI Number"
               onChange={handleInputChange}
-              value={values.phone}
+              value={values.dni}
+              maxLength={10}
+              minLength={10}
+              required
+            />
+            <Form.Label />
+            <Form.Control
+              type="date"
+              name="birthdate"
+              placeholder="CI Number"
+              onChange={handleInputChange}
+              value={values.birthdate}
               maxLength={10}
               minLength={10}
               required

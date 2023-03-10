@@ -127,6 +127,12 @@ export default function Header() {
                   <NavDropdown.Item href="#action/3.1">
                     <Profile size={20} /> Profile
                   </NavDropdown.Item>
+                  {sessionUser?.role?.name === "Paciente" && (
+                    <NavDropdown.Item as={Link} to="/diseases">
+                      <Profile size={20} /> Enfermedades (
+                      {sessionUser?.person?.diseases?.length})
+                    </NavDropdown.Item>
+                  )}
                   <NavDropdown.Item href="#action/3.2">
                     <DarkMode size={20} />
                     {" " + sessionUser?.role?.name}

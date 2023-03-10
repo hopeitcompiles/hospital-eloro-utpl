@@ -47,7 +47,9 @@ function SessionProvider({ children }) {
       return handleErrorResponse(er);
     }
   };
-
+  const refreshUser = () => {
+    getCurrentUser();
+  };
   const logout = () => {
     setSession(null);
     setAxiosAuthorization(null);
@@ -56,7 +58,12 @@ function SessionProvider({ children }) {
 
   return (
     <SessionContext.Provider
-      value={{ sessionUser: session, LogIn: login, LogOut: logout }}
+      value={{
+        sessionUser: session,
+        refreshUser,
+        LogIn: login,
+        LogOut: logout,
+      }}
     >
       {children}
     </SessionContext.Provider>

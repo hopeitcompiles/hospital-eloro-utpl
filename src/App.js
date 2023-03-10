@@ -14,6 +14,7 @@ import {
   DoctorPage,
   CreateAppointment,
   AppointmentPage,
+  DiseasesPage,
 } from "./imports";
 import DoctorList from "./pages/doctors/list/doctors-list";
 
@@ -54,6 +55,7 @@ function App() {
                   path={"/appointments/create"}
                   element={<CreateAppointment />}
                 />
+                <Route path={"/diseases"} element={<DiseasesPage />} />
               </Routes>
             </ListProvider>
           </ThemeProvider>
